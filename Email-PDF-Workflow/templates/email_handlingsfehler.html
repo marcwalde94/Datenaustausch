@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Schulungsnachweis: {{ title }}</title>
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <![endif]-->
+  <style type="text/css">
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+    body { margin: 0 !important; padding: 0 !important; width: 100% !important; background-color: #F0F0F0; }
+    @media only screen and (max-width: 820px) {
+      .outer { width: 100% !important; }
+      .col-half { display: block !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
+      .pad-r { padding-right: 0 !important; padding-bottom: 14px !important; }
+      .pad-l { padding-left: 0 !important; }
+      .col-inner { padding: 0 0 12px 0 !important; }
+      .img-fluid img { width: 100% !important; }
+      .info-col { display: block !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
+      /* Tag-Pills auf schmalen Screens umbrechen lassen: Zellen werden zu
+         inline-block, die Spacer-Zellen entfallen (Abstand via margin). */
+      .tag-row { display: block !important; }
+      .tag-cell { display: inline-block !important; margin: 0 6px 8px 0 !important; }
+      .tag-spacer { display: none !important; width: 0 !important; }
+    }
+  </style>
+</head>
+<body style="margin:0; padding:0; background-color:#F0F0F0;">
+
+  <div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">
+    Neues Praxis-Wissen: {{ title }} &ndash; Kurz reinschauen lohnt sich!
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F0F0F0;">
+    <tr>
+      <td align="center" style="padding: 16px 0;">
+
+        <!-- MAIN CONTAINER (breit = Querformat-Feeling) -->
+        <table role="presentation" class="outer" width="800" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFFFFF; border-radius:12px; overflow:hidden;">
+
+          <!-- ═══ HEADER ═══ -->
+          <tr>
+            <td style="padding: 22px 32px 14px 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="vertical-align:middle;">
+                    <span style="font-family:'Bree SH','Segoe UI',Arial,sans-serif; font-size:14px; font-weight:bold; color:#333333; letter-spacing:0.5px;">SCHULUNGSNACHWEIS &ndash; ONE POINT LESSON</span>
+                  </td>
+                  <td style="vertical-align:middle; text-align:right;">
+                    {% if logo_src %}
+                    <img src="{{ logo_src }}" alt="Siemens Healthineers" width="130" style="display:inline-block; max-width:130px; height:auto;" />
+                    {% else %}
+                    <span style="font-family:Arial,sans-serif; font-size:11px; color:#999999;">Siemens Healthineers</span>
+                    {% endif %}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ORANGE DIVIDER (unter Logo + Ueberschrift, wie im PDF) - Outlook-sicher via bgcolor-Zelle -->
+          <tr>
+            <td style="padding:0 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr><td height="2" bgcolor="#FF7900" style="height:2px; line-height:2px; font-size:0;">&nbsp;</td></tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ═══ INTRO: Positiver Text ═══ -->
+          <tr>
+            <td style="padding: 20px 32px 8px 32px;">
+              <p style="font-family:'Bree SH','Segoe UI',Arial,sans-serif; font-size:17px; font-weight:bold; color:#1B1534; margin:0 0 10px 0; line-height:1.3;">
+                Neues Praxis-Wissen f&uuml;r euch
+              </p>
+              <p style="font-family:Arial,sans-serif; font-size:13px; color:#333333; margin:0 0 8px 0; line-height:1.65;">
+                Hallo zusammen, aus der Produktion ist ein neuer Hinweis eingegangen, der euch bei der t&auml;glichen Arbeit unterst&uuml;tzen kann. Wir m&ouml;chten sicherstellen, dass <strong>alle im Team</strong> die gleichen Infos haben &ndash; deshalb erh&auml;lt jeder diese Nachricht.
+              </p>
+              <p style="font-family:Arial,sans-serif; font-size:13px; color:#555555; margin:0; line-height:1.65;">
+                Diese Hinweise helfen, typische Stolperfallen fr&uuml;hzeitig zu erkennen und gemeinsam besser zu werden. Es geht nicht um Kontrolle &ndash; sondern darum, euch bestm&ouml;glich zu informieren und zu unterst&uuml;tzen. <strong style="color:#333;">Kurz reinschauen lohnt sich!</strong>
+              </p>
+            </td>
+          </tr>
+
+          <!-- ═══ META-LEISTE ═══ -->
+          <tr>
+            <td style="padding: 16px 32px 22px 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F5F5F5; border-radius:10px;">
+                <tr>
+                  <td style="padding:18px 22px 8px 22px;">
+                    <span style="font-family:Arial,sans-serif; font-size:15px; font-weight:bold; color:#333333;">{{ title }}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:2px 20px {% if tags %}8px{% else %}14px{% endif %} 20px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td style="font-family:Arial,sans-serif; font-size:11px; color:#555; padding-right:18px;">
+                          <strong style="color:#333;">Fall-Nr.</strong> #{{ entry_id[:8] }}
+                        </td>
+                        <td style="font-family:Arial,sans-serif; font-size:11px; color:#555; padding-right:18px;">
+                          <strong style="color:#333;">Linie</strong> {{ linie }}
+                        </td>
+                        <td style="font-family:Arial,sans-serif; font-size:11px; color:#555; padding-right:18px;">
+                          <strong style="color:#333;">Bereich</strong> {{ bereich }}
+                        </td>
+                        {% if auswirkung and auswirkung != '–' %}
+                        <td style="font-family:Arial,sans-serif; font-size:11px; color:#555;">
+                          <strong style="color:#333;">Auswirkung</strong> {{ auswirkung }}
+                        </td>
+                        {% endif %}
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                {% if tags %}
+                <tr>
+                  <td style="padding:4px 22px 18px 22px;">
+                    <!-- Tag-Pills: einzeilige Tabelle (td-Zellen stehen am PC
+                         garantiert nebeneinander, Fuellung via bgcolor-Attribut
+                         das kein Sanitizer entfernt). Auf schmalen Screens
+                         greift die Media Query (.tag-row/.tag-cell) und laesst
+                         die Pills umbrechen. Desktop-Outlook ignoriert Media
+                         Queries -> bleibt einzeilig. Bestes aus beiden Welten. -->
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr class="tag-row">
+                      {% for tag in tags %}<td class="tag-cell" bgcolor="#CCCCCC" valign="middle" style="background-color:#CCCCCC; border:1px solid #FF7900; border-radius:4px; padding:6px 15px; font-family:Arial,sans-serif; font-size:11px; font-weight:bold; line-height:1.1; color:#2E3A45; white-space:nowrap; letter-spacing:0.2px;">{{ tag }}</td>{% if not loop.last %}<td class="tag-spacer" width="8" style="width:8px; font-size:0; line-height:0;">&nbsp;</td>{% endif %}{% endfor %}
+                    </tr></table>
+                  </td>
+                </tr>
+                {% endif %}
+              </table>
+            </td>
+          </tr>
+
+          <!-- ═══════════════════════════════════════════════════ -->
+          <!-- IST / SOLL GEGENÜBERSTELLUNG (Herzstück)          -->
+          <!-- ═══════════════════════════════════════════════════ -->
+          <tr>
+            <td style="padding: 0 32px 20px 32px;">
+              <!-- Echte 2-Spalten-Tabelle: Zellen einer Zeile sind IMMER exakt gleich hoch (auch in Outlook) -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;">
+                <tr>
+                  <!-- IST (links) -->
+                  <td class="col-half pad-r" valign="top" width="49%" style="padding-right:8px; height:100%;">
+                    <table role="presentation" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0" style="height:100%; border-radius:10px; overflow:hidden;">
+                      <tr>
+                        <td style="background-color:#E8959F; padding:10px 16px; border-radius:10px 10px 0 0; text-align:center;">
+                          <span style="font-family:Arial,sans-serif; font-size:13px; font-weight:bold; color:#FFFFFF;">FEHLER &ndash; IST-Zustand</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="img-fluid" valign="top" height="100%" style="height:100%; padding:14px; background-color:#FFF5F5; border-radius:0 0 10px 10px;">
+                          {% if ist_image_srcs %}
+                            {% for src in ist_image_srcs %}
+                            <img src="{{ src }}" alt="IST-Zustand" width="326" style="display:block; width:100%; max-width:326px; height:auto; border-radius:8px; margin-bottom:10px;" />
+                            {% endfor %}
+                          {% else %}
+                            <div style="padding:30px; text-align:center; background:#FFF0F0; border-radius:8px;">
+                              <span style="font-family:Arial,sans-serif; font-size:12px; color:#999;">Kein Bild verf&uuml;gbar</span>
+                            </div>
+                          {% endif %}
+                          <p style="font-family:Arial,sans-serif; font-size:12px; font-weight:bold; color:#333; margin:6px 0 3px 0;">Problem erkannt:</p>
+                          <p style="font-family:Arial,sans-serif; font-size:12px; color:#666; margin:0; line-height:1.55;">{{ ist_beschreibung }}</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+
+                  <!-- SOLL (rechts) -->
+                  <td class="col-half pad-l" valign="top" width="49%" style="padding-left:8px; height:100%;">
+                    <table role="presentation" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0" style="height:100%; border-radius:10px; overflow:hidden;">
+                      <tr>
+                        <td style="background-color:#7DC89F; padding:10px 16px; border-radius:10px 10px 0 0; text-align:center;">
+                          <span style="font-family:Arial,sans-serif; font-size:13px; font-weight:bold; color:#FFFFFF;">KORREKT &ndash; SOLL-Zustand</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="img-fluid" valign="top" height="100%" style="height:100%; padding:14px; background-color:#F0FDF4; border-radius:0 0 10px 10px;">
+                          {% if soll_image_srcs %}
+                            {% for src in soll_image_srcs %}
+                            <img src="{{ src }}" alt="SOLL-Zustand" width="326" style="display:block; width:100%; max-width:326px; height:auto; border-radius:8px; margin-bottom:10px;" />
+                            {% endfor %}
+                          {% else %}
+                            <div style="padding:22px 16px; text-align:center; background:#F0FAF0; border:1px dashed #B8DCC6; border-radius:8px;">
+                              <span style="font-family:Arial,sans-serif; font-size:12px; font-weight:bold; color:#6BA583; display:block; margin-bottom:4px;">Kein Vergleichsbild vorhanden</span>
+                              <span style="font-family:Arial,sans-serif; font-size:11px; color:#888; line-height:1.5;">F&uuml;r diesen Hinweis gibt es keinen bildlichen Soll-Zustand &ndash; bitte die Beschreibung beachten.</span>
+                            </div>
+                          {% endif %}
+                          <p style="font-family:Arial,sans-serif; font-size:12px; font-weight:bold; color:#333; margin:6px 0 3px 0;">Richtig so:</p>
+                          <p style="font-family:Arial,sans-serif; font-size:12px; color:#666; margin:0; line-height:1.55;">{{ soll_beschreibung }}</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ═══════════════════════════════════════════════════ -->
+          <!-- INFO-LEISTE: PDF + Team (nebeneinander, schlicht)  -->
+          <!-- ═══════════════════════════════════════════════════ -->
+          <tr>
+            <td style="padding: 0 32px 20px 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;">
+                <tr>
+                  <td class="col-half pad-r" valign="top" width="49%" style="padding-right:8px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F5F5F5; border-radius:10px;">
+                      <tr>
+                        <td style="padding:16px 18px;">
+                          <p style="font-family:Arial,sans-serif; font-size:13px; font-weight:bold; color:#333; margin:0 0 4px 0;">Schulungsnachweis als PDF</p>
+                          <p style="font-family:Arial,sans-serif; font-size:12px; color:#666; margin:0; line-height:1.55;">
+                            Im Anhang findest du den vollst&auml;ndigen Schulungsnachweis &ndash; ideal zum Nachschlagen oder Ausdrucken am Arbeitsplatz.
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td class="col-half pad-l" valign="top" width="49%" style="padding-left:8px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F5F5F5; border-radius:10px;">
+                      <tr>
+                        <td style="padding:16px 18px;">
+                          <p style="font-family:Arial,sans-serif; font-size:13px; font-weight:bold; color:#333; margin:0 0 4px 0;">Gemeinsam besser werden</p>
+                          <p style="font-family:Arial,sans-serif; font-size:12px; color:#666; margin:0; line-height:1.55;">
+                            Diese Info geht an das gesamte Team &ndash; nicht an dich pers&ouml;nlich. Wir teilen Erfahrungen, damit alle davon profitieren.
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ═══ FOOTER ═══ -->
+          <tr>
+            <td style="padding: 0 32px;"><div style="border-top:1px solid #E8E8E8;"></div></td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 32px 8px 32px;">
+              <p style="font-family:Arial,sans-serif; font-size:11px; color:#999; margin:0; line-height:1.5;">
+                <strong style="color:#777;">Siemens Healthineers</strong> &nbsp;|&nbsp; HEP06 &nbsp;|&nbsp; Qualit&auml;tswissen f&uuml;r die Produktion
+              </p>
+              <p style="font-family:Arial,sans-serif; font-size:10px; color:#BBB; margin:5px 0 0 0; line-height:1.5;">
+                Du erh&auml;ltst diese Nachricht, weil du Teil des Produktionsteams bist.
+                Bei Fragen wende dich an deinen Schichtleiter oder Bereichsverantwortlichen.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0 32px 14px 32px;">
+              <span style="font-family:Arial,sans-serif; font-size:9px; color:#CCC;">Ref: {{ entry_id }} &nbsp;|&nbsp; {{ from_address }}</span>
+            </td>
+          </tr>
+
+          <!-- ORANGE BOTTOM -->
+          <tr>
+            <td style="background-color:#FF7900; height:4px; font-size:1px; line-height:1px; border-radius:0 0 12px 12px;">&nbsp;</td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Schulungsnachweis – {{ entry_title }}</title>
+    <style>
+        /* === RESET & BASIS === */
+        @page { size: A4 landscape; margin: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* === CORPORATE-SCHRIFTEN (eingebettet via Base64) === */
+        {{ font_face_css }}
+        body {
+            font-family: 'Siemens Sans', Arial, Helvetica, sans-serif;
+            color: #333333;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* === SEITE === */
+        .page {
+            width: 297mm;
+            height: 210mm;
+            padding: 7mm 12mm 6mm 12mm;
+            position: relative;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        /* === HEADER === */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2mm;
+        }
+        .header-left { flex: 1; }
+        .doc-title {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #333333;
+            letter-spacing: 0.5px;
+            font-family: 'Bree SH', 'Segoe UI', Arial, sans-serif;
+        }
+        .header-right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .header-logo img {
+            height: 12mm;
+            width: auto;
+        }
+        .header-meta {
+            font-size: 7pt;
+            color: #999999;
+            margin-top: 1mm;
+        }
+
+        /* === TRENNLINIE === */
+        hr.divider {
+            border: none;
+            border-top: 2.5px solid #FF7900;
+            margin: 1.5mm 0;
+        }
+
+        /* === TITEL/META-BEREICH === */
+        .title-meta-area {
+            background: #ECECEC;
+            padding: 2.5mm 4mm;
+            border-radius: 1.5mm;
+            margin-bottom: 2mm;
+        }
+        .entry-title {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 1.5mm;
+        }
+
+        /* === META === */
+        .meta-row {
+            display: flex;
+            gap: 6mm;
+            font-size: 7.5pt;
+            margin-bottom: 0;
+            flex-wrap: wrap;
+        }
+        .meta-row .item { white-space: nowrap; }
+        .meta-row .label { font-weight: bold; color: #333333; }
+        .meta-row .value { color: #555555; }
+
+        /* === TAGS === */
+        .tag-row {
+            margin-top: 2.5mm;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2mm;
+        }
+        .tag-chip {
+            display: inline-block;
+            background: #CCCCCC;
+            border: 0.35mm solid #FF7900;
+            color: #3C4A57;
+            font-size: 7pt;
+            font-weight: bold;
+            line-height: 1;
+            padding: 1.4mm 3mm;
+            border-radius: 3mm;
+            white-space: nowrap;
+            letter-spacing: 0.2pt;
+        }
+
+        /* === IST/SOLL VERGLEICH === */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4mm;
+        }
+        .section {
+            border: none;
+            border-radius: 2mm;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .section.ist {
+            background: #FFF5F5;
+        }
+        .section.soll {
+            background: #F0FDF4;
+        }
+        .section-header {
+            padding: 2mm 3mm;
+            font-size: 9pt;
+            font-weight: bold;
+            color: #333333;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .section.ist .section-header {
+            background: #F0A5B0;
+        }
+        .section.soll .section-header {
+            background: #9DD4B2;
+        }
+        .section-body {
+            padding: 2mm;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        /* === BILD (maximale Größe!) === */
+        .image-box {
+            width: 100%;
+            height: 78mm;
+            background: rgba(255,255,255,0.6);
+            border: 1px dashed rgba(0,0,0,0.15);
+            border-radius: 1.5mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2mm;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .image-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .image-placeholder {
+            font-size: 8pt;
+            color: #999999;
+        }
+        .image-placeholder.no-image {
+            text-align: center;
+            padding: 0 6mm;
+        }
+        .no-image-title {
+            font-size: 9pt;
+            font-weight: bold;
+            color: #6BA583;
+            margin-bottom: 1.5mm;
+        }
+        .no-image-text {
+            font-size: 8pt;
+            color: #888888;
+            line-height: 1.5;
+        }
+
+        /* === BESCHREIBUNG === */
+        .desc-title {
+            font-size: 8pt;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 1mm;
+        }
+        .desc-list {
+            list-style: none;
+            padding: 0;
+        }
+        .desc-list li {
+            font-size: 7.5pt;
+            color: #666666;
+            padding: 0.3mm 0 0.3mm 3mm;
+            position: relative;
+            line-height: 1.25;
+        }
+        .desc-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #333333;
+        }
+
+        /* === HINWEIS === */
+        .hint-box {
+            background: rgba(255,255,255,0.5);
+            border: none;
+            border-left: 3px solid rgba(0,0,0,0.25);
+            border-radius: 1mm;
+            padding: 1.5mm 3mm;
+            margin-top: auto;
+        }
+        .hint-box .hint-label {
+            font-size: 7.5pt;
+            font-weight: bold;
+            color: #333333;
+        }
+        .hint-box .hint-text {
+            font-size: 7.5pt;
+            color: #555555;
+        }
+
+        /* === BESTÄTIGUNG === */
+        .confirmation {
+            background: #ECECEC;
+            border-radius: 1.5mm;
+            padding: 2.5mm 4mm;
+            margin-top: 2mm;
+        }
+        .confirm-text {
+            font-size: 7pt;
+            color: #555555;
+            margin-bottom: 2mm;
+            line-height: 1.3;
+        }
+
+        /* === SIGNATUR === */
+        .sig-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1fr;
+            gap: 4mm;
+        }
+        .sig-field {
+            border-bottom: 1px solid #333333;
+            padding-bottom: 1mm;
+        }
+        .sig-label {
+            font-size: 7pt;
+            font-weight: bold;
+            color: #555555;
+            margin-bottom: 1mm;
+        }
+
+        /*
+         * ADOBE SIGN TEXT-TAGS
+         * Format: TagName_es_:RollenName:FeldTyp (in doppelten geschweiften Klammern)
+         */
+        .text-tag {
+            font-size: 10pt;
+            color: #999999;
+            line-height: 1.2;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 12pt;
+            display: block;
+            padding-top: 1mm;
+        }
+
+        /* === FOOTER === */
+        .footer {
+            position: absolute;
+            bottom: 4mm;
+            left: 12mm;
+            right: 12mm;
+            display: flex;
+            justify-content: space-between;
+            font-size: 6.5pt;
+            color: #999999;
+            border-top: 1px solid #eeeeee;
+            padding-top: 1mm;
+        }
+
+        @media print {
+            body { background: none; }
+            .page { box-shadow: none; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-left">
+                <div class="doc-title">SCHULUNGSNACHWEIS – ONE POINT LESSON</div>
+            </div>
+            <div class="header-right">
+                {% if logo_b64 %}
+                <div class="header-logo">
+                    <img src="data:image/png;base64,{{ logo_b64 }}" alt="Siemens Healthineers">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- TITEL + META -->
+        <div class="title-meta-area">
+        <div class="entry-title">{{ entry_title }}</div>
+        <div class="meta-row">
+            <div class="item"><span class="label">Fall-Nr.: </span><span class="value">#{{ entry_id_short }}</span></div>
+            {% if linie and linie != '–' %}<div class="item"><span class="label">Linie: </span><span class="value">{{ linie }}</span></div>{% endif %}
+            {% if bereich and bereich != '–' %}<div class="item"><span class="label">Bereich: </span><span class="value">{{ bereich }}</span></div>{% endif %}
+            {% if auswirkung and auswirkung != '–' %}<div class="item"><span class="label">Auswirkung: </span><span class="value">{{ auswirkung }}</span></div>{% endif %}
+            <div class="item"><span class="label">Datum: </span><span class="value">{{ datum }}</span></div>
+            {% if referenz and referenz != '–' %}<div class="item"><span class="label">Referenz: </span><span class="value">{{ referenz }}</span></div>{% endif %}
+        </div>
+        {% if tags %}
+        <div class="tag-row">
+            {% for tag in tags %}<span class="tag-chip">{{ tag }}</span>{% endfor %}
+        </div>
+        {% endif %}
+        </div>
+
+        <!-- IST / SOLL -->
+        <div class="comparison">
+            <!-- IST -->
+            <div class="section ist">
+                <div class="section-header">❌ [FEHLER] IST-Zustand</div>
+                <div class="section-body">
+                    <div class="image-box">
+                        {% if ist_bild_b64 %}
+                        <img src="data:image/png;base64,{{ ist_bild_b64 }}" alt="IST-Zustand">
+                        {% else %}
+                        <div class="image-placeholder">BILD: IST-Zustand</div>
+                        {% endif %}
+                    </div>
+                    <div class="desc-title">Problem erkannt:</div>
+                    <ul class="desc-list">
+                        {% for punkt in ist_punkte %}
+                        <li>{{ punkt }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% if referenz and referenz != '–' %}
+                    <div class="hint-box">
+                        <span class="hint-label">📋 Referenz: </span>
+                        <span class="hint-text">{{ referenz }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- SOLL -->
+            <div class="section soll">
+                <div class="section-header">✅ [KORREKT] SOLL-Zustand</div>
+                <div class="section-body">
+                    <div class="image-box">
+                        {% if soll_bild_b64 %}
+                        <img src="data:image/png;base64,{{ soll_bild_b64 }}" alt="SOLL-Zustand">
+                        {% else %}
+                        <div class="image-placeholder no-image">
+                            <div class="no-image-title">Kein Vergleichsbild vorhanden</div>
+                            <div class="no-image-text">Für diesen Hinweis gibt es keinen bildlichen Soll-Zustand.<br>Bitte die Beschreibung und Referenz unten beachten.</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="desc-title">Richtig so – Schritt für Schritt:</div>
+                    <ul class="desc-list">
+                        {% for punkt in soll_punkte %}
+                        <li>{{ punkt }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% if beschreibung %}
+                    <div class="hint-box">
+                        <span class="hint-label">⚠️ HINWEIS: </span>
+                        <span class="hint-text">{{ beschreibung }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- BESTÄTIGUNG -->
+        <div class="confirmation">
+            <div class="confirm-text">
+                Ich bestätige mit meiner Unterschrift, dass ich diesen Handlingsfehler verstanden habe
+                und die korrekten Maßnahmen in meiner täglichen Arbeit beachten werde.
+            </div>
+            <div class="sig-grid">
+                <div class="sig-field">
+                    <div class="sig-label">Unterschrift:</div>
+                    <span class="text-tag">{% raw %}{{Sig_es_:signer1:signature}}{% endraw %}</span>
+                </div>
+                <div class="sig-field">
+                    <div class="sig-label">Name:</div>
+                    <span class="text-tag">{% raw %}{{N_es_:signer1:fullname}}{% endraw %}</span>
+                </div>
+                <div class="sig-field">
+                    <div class="sig-label">Datum:</div>
+                    <span class="text-tag">{% raw %}{{Dte_es_:signer1:date}}{% endraw %}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <span>SIEMENS HEALTHINEERS | HEP</span>
+            <span>Erstellt durch: Handlingsfehler-Middleware | {{ created_at }}</span>
+        </div>
+
+    </div>
+</body>
+</html>
