@@ -482,6 +482,19 @@ font_face_css = "".join([
 > `templates/fonts/` ablegen. Fehlen sie, greift automatisch der Arial-Fallback (Layout bleibt,
 > nur die Schrift ändert sich).
 
+### 7.4 Logo
+
+Das **Siemens-Healthineers-Logo** liegt im Paket unter [`assets/`](./assets) – in zwei Varianten:
+
+| Datei | Einsatz | Einbettung |
+|---|---|---|
+| `assets/siemens_logo_email.png` | E-Mail-Header (`logo_src`) | als **CID-Inline-Anhang** (`cid:siemens_logo`) |
+| `assets/siemens_logo_pdf.png` | PDF-Header (`logo_b64`) | als **Base64**-`data:`-URI im HTML |
+
+Beide zeigen dieselbe Bildmarke (unterschiedliche Auflösung/Zuschnitt). Fehlt das Logo, greift in
+der Mail der Text-Fallback „Siemens Healthineers“. Die neue App kann diese Dateien 1:1 übernehmen
+oder durch die eigene CI-Marke ersetzen – der Platz im Header bleibt gleich.
+
 ### 7.3 Maße / Layout
 
 | Element | Wert |
@@ -581,6 +594,8 @@ Für den 1:1-Nachbau in der neuen App:
 - [ ] **Texte** aus Kapitel 6 wörtlich übernehmen (positiver Flow).
 - [ ] **Design-Tokens** (Kapitel 7) einhalten: Orange `#FF7900`, IST rosa/rot, SOLL grün,
       Tag-Pills grau + oranger Rahmen, Fonts Bree SH / Siemens Sans (+ Arial-Fallback).
+- [ ] **Siemens-Logo** aus [`assets/`](./assets) einbinden: `siemens_logo_email.png` (Mail, via CID),
+      `siemens_logo_pdf.png` (PDF, via Base64) – oder durch die eigene CI-Marke ersetzen.
 - [ ] **Outlook-Fallstricke** (Kapitel 9) beachten.
 - [ ] Corporate-Fonts aus lizenzierter Quelle unter `templates/fonts/` ergänzen (sonst Arial).
 
